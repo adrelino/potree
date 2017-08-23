@@ -17,7 +17,10 @@ var server;
 var paths = {
 	potree : [
 		"src/Potree.js",
-		"src/PointCloudTree.js",
+		"src/tree/DEMNode.js",
+		"src/tree/DEM.js",
+		"src/tree/PointCloudTreeNode.js",
+		"src/tree/PointCloudTree.js",
 		"src/WorkerPool.js",
 		"build/shaders/shaders.js",
 		"src/extensions/EventDispatcher.js",
@@ -125,12 +128,12 @@ var shaders = [
 gulp.task("workers", function(){
 
 	for(let workerName of Object.keys(workers)){
-		
+
 		gulp.src(workers[workerName])
 			.pipe(concat(`${workerName}.js`))
 			.pipe(size({showFiles: true}))
 			.pipe(gulp.dest('build/potree/workers'));
-		
+
 	}
 
 });
@@ -176,12 +179,12 @@ gulp.task('webserver', function() {
 gulp.task('watch', function() {
 	gulp.run("build");
 	gulp.run("webserver");
-	
+
     gulp.watch([
-		'src/**/*.js', 
-		'src/**/*.css', 
-		'src/**/*.fs', 
-		'src/**/*.vs', 
+		'src/**/*.js',
+		'src/**/*.css',
+		'src/**/*.fs',
+		'src/**/*.vs',
 		'src/**/*.html'], ["build"]);
 });
 
@@ -258,7 +261,7 @@ var encodeShader = function(fileName, varname, opt){
 			console.log(fname);
 
 			var content = new Buffer(b).toString();
-			
+
 			let prep = `\nPotree.Shaders["${fname}"] = \`${content}\`\n`;
 
 			joinedContent += prep;

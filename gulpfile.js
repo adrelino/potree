@@ -56,6 +56,7 @@ var paths = {
 		"src/PointCloudGreyhoundGeometry.js",
 		"src/PointCloudGreyhoundGeometryNode.js",
 		"src/utils.js",
+		"src/utils/screenPass.js",
 		"src/Features.js",
 		"src/TextSprite.js",
 		"src/AnimationPath.js",

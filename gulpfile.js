@@ -55,6 +55,7 @@ var paths = {
 		"src/Annotation.js",
 		"src/Action.js",
 		"src/Actions.js",
+		"src/ProfileData.js",
 		"src/ProfileRequest.js",
 		"src/tree/PointCloudOctreeNode.js",
 		"src/tree/PointCloudOctree.js",

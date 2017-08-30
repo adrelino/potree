@@ -1,5 +1,5 @@
 
-Potree.TransformationTool = class TransformationTool {
+class TransformationTool {
 	constructor (viewer) {
 		this.viewer = viewer;
 
@@ -543,3 +543,5 @@ Potree.TransformationTool = class TransformationTool {
 	//	this.renderer.render(this.sceneTransform, camera, target);
 	// }
 };
+
+module.exports = TransformationTool;

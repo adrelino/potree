@@ -1,5 +1,5 @@
 
-Potree.Measure = class Measure extends THREE.Object3D {
+class Measure extends THREE.Object3D {
 	constructor () {
 		super();
 
@@ -532,3 +532,5 @@ Potree.Measure = class Measure extends THREE.Object3D {
 		this.update();
 	}
 };
+
+module.exports = Measure;

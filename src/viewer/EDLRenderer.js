@@ -140,3 +140,5 @@ class EDLRenderer {
 		viewer.renderer.render(viewer.transformationTool.sceneTransform, viewer.scene.camera);
 	}
 };
+
+module.exports = EDLRenderer;

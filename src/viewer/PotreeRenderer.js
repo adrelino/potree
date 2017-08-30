@@ -64,3 +64,5 @@ class PotreeRenderer {
 		// Potree.resolveQueries(this.viewer.renderer.getContext());
 	};
 };
+
+module.exports = PotreeRenderer;

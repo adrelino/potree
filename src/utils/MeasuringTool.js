@@ -1,3 +1,6 @@
+const THREE = require('three');
+const Measure = require('./Measure');
+const projectedRadius = require('./projectedRadius');
 
 class MeasuringTool extends THREE.EventDispatcher {
 	constructor (viewer) {
@@ -42,7 +45,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 	startInsertion (args = {}) {
 		let domElement = this.viewer.renderer.domElement;
 
-		let measure = new Potree.Measure();
+		let measure = new Measure();
 
 		this.dispatchEvent({
 			type: 'start_inserting_measurement',
@@ -115,7 +118,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 			// spheres
 			for (let sphere of measure.spheres) {
 				let distance = camera.position.distanceTo(sphere.getWorldPosition());
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (15 / pr);
 				sphere.scale.set(scale, scale, scale);
 			}
@@ -124,7 +127,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 			let labels = measure.edgeLabels.concat(measure.angleLabels);
 			for (let label of labels) {
 				let distance = camera.position.distanceTo(label.getWorldPosition());
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (70 / pr);
 				label.scale.set(scale, scale, scale);
 			}
@@ -153,9 +156,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 				labelPos = new THREE.Vector3().addVectors(
 					camera.position, direction.multiplyScalar(distance));
 
-				label.position.copy(labelPos);
-
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				label.position.copy(labelPos= projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (70 / pr);
 				label.scale.set(scale, scale, scale);
 			}
@@ -166,7 +167,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 
 				{
 					let distance = label.position.distanceTo(camera.position);
-					let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+					let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 					let scale = (70 / pr);
 					label.scale.set(scale, scale, scale);
 				}
@@ -209,7 +210,7 @@ class MeasuringTool extends THREE.EventDispatcher {
 				let label = measure.areaLabel;
 
 				let distance = label.position.distanceTo(camera.position);
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (70 / pr);
 				label.scale.set(scale, scale, scale);
 			}

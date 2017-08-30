@@ -1,3 +1,7 @@
+const THREE = require('three');
+const removeEventListeners = require('./removeEventListeners');
+const Profile = require('./Profile');
+const projectedRadius = require('./projectedRadius');
 
 class ProfileTool extends THREE.EventDispatcher {
 	constructor (viewer) {
@@ -30,8 +34,8 @@ class ProfileTool extends THREE.EventDispatcher {
 
 		if (this.scene) {
 			// TODO: the API is used wrong, removeEventListeners has only two parameters!
-			Potree.utils.removeEventListeners(this.scene, 'profile_added', this.onAdd);
-			Potree.utils.removeEventListeners(this.scene, 'profile_removed', this.onRemove);
+			removeEventListeners(this.scene, 'profile_added', this.onAdd);
+			removeEventListeners(this.scene, 'profile_removed', this.onRemove);
 		}
 
 		this.scene = scene;
@@ -43,7 +47,7 @@ class ProfileTool extends THREE.EventDispatcher {
 	startInsertion (args = {}) {
 		let domElement = this.viewer.renderer.domElement;
 
-		let profile = new Potree.Profile();
+		let profile = new Profile();
 		profile.name = args.name || 'Profile';
 
 		this.dispatchEvent({
@@ -62,7 +66,7 @@ class ProfileTool extends THREE.EventDispatcher {
 				if (profile.points.length <= 1) {
 					let camera = this.viewer.scene.camera;
 					let distance = camera.position.distanceTo(profile.points[0]);
-					let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+					let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 					let width = (10 / pr);
 
 					profile.setWidth(width);
@@ -104,7 +108,7 @@ class ProfileTool extends THREE.EventDispatcher {
 		for (let profile of profiles) {
 			for (let sphere of profile.spheres) {
 				let distance = camera.position.distanceTo(sphere.getWorldPosition());
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (15 / pr);
 				sphere.scale.set(scale, scale, scale);
 			}

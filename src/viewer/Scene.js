@@ -1,8 +1,14 @@
+const THREE = require('three');
+const Annotation = require('../Annotation');
+const View = require('./View');
+const createGrid = require('../utils/createGrid');
+const createBackgroundTexture = require('../utils/createBackgroundTexture');
+
 class Scene extends THREE.EventDispatcher {
 	constructor () {
 		super();
 
-		this.annotations = new Potree.Annotation();
+		this.annotations = new Annotation();
 		this.scene = new THREE.Scene();
 		this.scenePointCloud = new THREE.Scene();
 		this.sceneBG = new THREE.Scene();
@@ -14,7 +20,7 @@ class Scene extends THREE.EventDispatcher {
 		this.profiles = [];
 		this.volumes = [];
 
-		this.view = new Potree.View();
+		this.view = new View();
 
 		this.directionalLight = null;
 
@@ -180,12 +186,12 @@ class Scene extends THREE.EventDispatcher {
 		let light = new THREE.AmbientLight(0x555555); // soft white light
 		this.scenePointCloud.add(light);
 
-		let grid = Potree.utils.createGrid(5, 5, 2);
+		let grid = createGrid(5, 5, 2);
 		this.scene.add(grid);
 
 		{ // background
-		// var texture = THREE.ImageUtils.loadTexture( Potree.resourcePath + '/textures/background.gif' );
-			let texture = Potree.utils.createBackgroundTexture(512, 512);
+		// var texture = THREE.ImageUtils.loadTexture( context.resourcePath + '/textures/background.gif' );
+			let texture = createBackgroundTexture(512, 512);
 
 			texture.minFilter = texture.magFilter = THREE.NearestFilter;
 			texture.minFilter = texture.magFilter = THREE.LinearFilter;
@@ -230,7 +236,7 @@ class Scene extends THREE.EventDispatcher {
 		} else if (position instanceof THREE.Vector3) {
 			args.position = position;
 		}
-		let annotation = new Potree.Annotation(args);
+		let annotation = new Annotation(args);
 		this.annotations.add(annotation);
 	}
 

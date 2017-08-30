@@ -1,3 +1,9 @@
+const THREE = require('three');
+const Volume = require('./Volume');
+const removeEventListeners = require('./removeEventListeners');
+const getMousePointCloudIntersection = require('./getMousePointCloudIntersection');
+const projectedRadius = require('./projectedRadius');
+const addCommas = require('./addCommas');
 
 class VolumeTool extends THREE.EventDispatcher {
 	constructor (viewer) {
@@ -26,7 +32,7 @@ class VolumeTool extends THREE.EventDispatcher {
 		};
 
 		this.viewer.inputHandler.addEventListener('delete', e => {
-			let volumes = e.selection.filter(e => (e instanceof Potree.Volume));
+			let volumes = e.selection.filter(e => (e instanceof Volume));
 			volumes.forEach(e => this.viewer.scene.removeVolume(e));
 		});
 	}
@@ -38,8 +44,8 @@ class VolumeTool extends THREE.EventDispatcher {
 
 		if (this.scene) {
 			// TODO: the API is used wrong, removeEventListeners has only two parameters!
-			Potree.utils.removeEventListeners(this.scene, 'volume_added', this.onAdd);
-			Potree.utils.removeEventListeners(this.scene, 'volume_removed', this.onRemove);
+			removeEventListeners(this.scene, 'volume_added', this.onAdd);
+			removeEventListeners(this.scene, 'volume_removed', this.onRemove);
 		}
 
 		this.scene = scene;
@@ -68,7 +74,7 @@ class VolumeTool extends THREE.EventDispatcher {
 		let drag = e => {
 			let camera = this.viewer.scene.camera;
 
-			let I = Potree.utils.getMousePointCloudIntersection(
+			let I = getMousePointCloudIntersection(
 				e.drag.end,
 				this.viewer.scene.camera,
 				this.viewer.renderer,
@@ -119,12 +125,12 @@ class VolumeTool extends THREE.EventDispatcher {
 
 			{
 				let distance = label.position.distanceTo(camera.position);
-				let pr = Potree.utils.projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (70 / pr);
 				label.scale.set(scale, scale, scale);
 			}
 
-			let text = Potree.utils.addCommas(volume.getVolume().toFixed(3)) + '\u00B3';
+			let text = addCommas(volume.getVolume().toFixed(3)) + '\u00B3';
 			label.setText(text);
 		}
 	}

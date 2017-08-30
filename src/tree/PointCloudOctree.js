@@ -1,4 +1,4 @@
-Potree.PointCloudOctree = class extends Potree.PointCloudTree {
+class PointCloudOctree extends Potree.PointCloudTree {
 	constructor (geometry, material) {
 		super();
 
@@ -752,3 +752,5 @@ Potree.PointCloudOctree = class extends Potree.PointCloudTree {
 		return this.visibleNodes.length / this.visibleGeometry.length;
 	}
 };
+
+module.exports = PointCloudOctree;

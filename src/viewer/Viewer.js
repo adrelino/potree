@@ -7,6 +7,7 @@
 //    return decodeURIComponent(results[2].replace(/\+/g, " "));
 // }
 const THREE = require('three');
+const TWEEN = require('@tweenjs/tween.js');
 const $ = require('jquery');
 const ClipMode = require('../materials/ClipMode');
 const Scene = require('./Scene');
@@ -24,6 +25,14 @@ const computeTransformedBoundingBox = require('../utils/computeTransformedBoundi
 const getParameterByName = require('../utils/getParameterByName');
 const loadSkybox = require('../utils/loadSkybox');
 const context = require('../context');
+const OrbitControls = require('../navigation/OrbitControls');
+const EarthControls = require('../navigation/EarthControls');
+const initSidebar = require('./initSidebar');
+const Features = require('../Features');
+const i18n = require('i18n');
+const ProgressBar = require('./ProgressBar');
+const Stats = Todo.Tricky;
+const updatePointClouds = Todo.Tricky;
 
 class PotreeViewer extends THREE.EventDispatcher {
 	constructor (domElement, args) {
@@ -613,9 +622,10 @@ class PotreeViewer extends THREE.EventDispatcher {
 
 		// TODO flipyz
 		console.log('TODO');
-	}
+	};
 
-	(getParameterByName('pointSize')) {
+	loadSettingsFromURL () {
+		if (getParameterByName('pointSize')) {
 			this.setPointSize(parseFloat(getParameterByName('pointSize')));
 		}
 
@@ -1057,7 +1067,7 @@ class PotreeViewer extends THREE.EventDispatcher {
 		}
 
 		if (!this.freeze) {
-			let result = Potree.updatePointClouds(scene.pointclouds, camera, this.renderer);
+			let result = updatePointClouds(scene.pointclouds, camera, this.renderer);
 			camera.near = result.lowestSpacing * 10.0;
 			camera.far = -this.getBoundingBox().applyMatrix4(camera.matrixWorldInverse).min.z;
 			camera.far = Math.max(camera.far * 1.5, 1000);
@@ -1141,20 +1151,22 @@ class PotreeViewer extends THREE.EventDispatcher {
 		// }
 
 		let queryAll;
+		const viewer = this;
 		if (Potree.timerQueriesEnabled) {
 			queryAll = Potree.startQuery('frame', viewer.renderer.getContext());
 		}
 
-		if (this.useEDL && Potree.Features.SHADER_EDL.isSupported()) {
+		if (this.useEDL && Features.SHADER_EDL.isSupported()) {
 			if (!this.edlRenderer) {
+				const EDLRenderer = require('./EDLRenderer');
 				this.edlRenderer = new EDLRenderer(this);
 			}
 			this.edlRenderer.render(this.renderer);
 		} else {
 			if (!this.potreeRenderer) {
+				const PotreeRenderer = require('./PotreeRenderer');
 				this.potreeRenderer = new PotreeRenderer(this);
 			}
-
 			this.potreeRenderer.render();
 		}
 

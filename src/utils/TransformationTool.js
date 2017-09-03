@@ -3,6 +3,7 @@ const HoverMenu = require('../stuff/HoverMenu');
 const HoverMenuItem = require('../stuff/HoverMenuItem');
 const context = require('../context');
 const projectedRadius = require('./projectedRadius');
+const $ = require('jquery');
 
 class TransformationTool {
 	constructor (viewer) {

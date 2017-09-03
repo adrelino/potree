@@ -156,7 +156,9 @@ class MeasuringTool extends THREE.EventDispatcher {
 				labelPos = new THREE.Vector3().addVectors(
 					camera.position, direction.multiplyScalar(distance));
 
-				label.position.copy(labelPos= projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
+				label.position.copy(labelPos);
+
+				let pr = projectedRadius(1, camera.fov * Math.PI / 180, distance, domElement.clientHeight);
 				let scale = (70 / pr);
 				label.scale.set(scale, scale, scale);
 			}

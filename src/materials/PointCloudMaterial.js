@@ -241,7 +241,7 @@ module.exports = class PointCloudMaterial extends THREE.RawShaderMaterial {
 			defines += '#define clip_disabled\n';
 		} else if (this.clipMode === ClipMode.CLIP_OUTSIDE) {
 			defines += '#define clip_outside\n';
-		} else if (this.clipMode === Potree.ClipMode.HIGHLIGHT_INSIDE) {
+		} else if (this.clipMode === ClipMode.HIGHLIGHT_INSIDE) {
 			defines += '#define clip_highlight_inside\n';
 		}
 

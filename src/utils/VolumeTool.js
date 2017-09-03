@@ -55,7 +55,7 @@ class VolumeTool extends THREE.EventDispatcher {
 	}
 
 	startInsertion (args = {}) {
-		let volume = new Potree.Volume();
+		let volume = new Volume();
 		volume.clip = args.clip || false;
 		volume.name = args.name || 'Volume';
 

@@ -115,3 +115,5 @@ BinaryHeap.prototype = {
     }
   }
 };
+
+module.exports = BinaryHeap;

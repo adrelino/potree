@@ -3,7 +3,7 @@ module.exports = {
 	distanceToPlaneWithNegative: require('./utils/distanceToPlaneWithNegative.js'),
 	zoomTo: require('./utils/zoomTo.js'),
 	screenPass: require('./utils/screenPass.js'),
-	loadShapefileFeatures: require('./utils/loadShapefileFeatures.js'),
+	//loadShapefileFeatures: require('./utils/loadShapefileFeatures.js'),
 	toString: require('./utils/toString.js'),
 	normalizeURL: require('./utils/normalizeURL.js'),
 	pathExists: require('./utils/pathExists.js'),

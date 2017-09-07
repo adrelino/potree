@@ -8,7 +8,7 @@
 // }
 const THREE = require('three');
 const TWEEN = require('@tweenjs/tween.js');
-const $ = require('../jquery');
+const $ = require('jquery');
 const ClipMode = require('../materials/ClipMode');
 const Scene = require('./Scene');
 const InputHandler = require('../navigation/InputHandler');
@@ -17,9 +17,9 @@ const ProfileTool = require('../utils/ProfileTool');
 const VolumeTool = require('../utils/VolumeTool');
 const TransformationTool = require('../utils/TransformationTool');
 const FirstPersonControls = require('../navigation/FirstPersonControls');
-const MapView = require('./MapView');
-const ProfileWindowController = require('../ProfileWindowController');
-const ProfileWindow = require('../ProfileWindow');
+//const MapView = require('./MapView');
+//const ProfileWindowController = require('../ProfileWindowController');
+//const ProfileWindow = require('../ProfileWindow');
 const PointColorType = require('../materials/PointColorType');
 const computeTransformedBoundingBox = require('../utils/computeTransformedBoundingBox');
 const getParameterByName = require('../utils/getParameterByName');
@@ -27,11 +27,11 @@ const loadSkybox = require('../utils/loadSkybox');
 const context = require('../context');
 const OrbitControls = require('../navigation/OrbitControls');
 const EarthControls = require('../navigation/EarthControls');
-const initSidebar = require('./initSidebar');
+//const initSidebar = require('./initSidebar');
 const Features = require('../Features');
-const i18n = require('../i18n');
+// const i18n = require('../i18n');
 const ProgressBar = require('./ProgressBar');
-const Stats = require('stats.js');
+//const Stats = require('stats.js');
 const updatePointClouds = require('../utils/updatePointClouds');
 const GLQueries = require('../webgl/GLQueries');
 
@@ -106,7 +106,7 @@ class PotreeViewer extends THREE.EventDispatcher {
 
 		this.progressBar = new ProgressBar();
 
-		this.stats = new Stats();
+		//this.stats = new Stats();
 		// this.stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
 		// document.body.appendChild( this.stats.dom );
 		// this.stats.dom.style.left = "100px";
@@ -191,7 +191,7 @@ class PotreeViewer extends THREE.EventDispatcher {
 		// start rendering!
 		requestAnimationFrame(this.loop.bind(this));
 
-		this.loadGUI = this.loadGUI.bind(this);
+		//this.loadGUI = this.loadGUI.bind(this);
 	}
 
 	// ------------------------------------------------------------------------------------
@@ -788,13 +788,13 @@ class PotreeViewer extends THREE.EventDispatcher {
 		// let map = $('#potree_map');
 		// map.toggle(100);
 
-		if (this.mapView) {
+		/* if (this.mapView) {
 			this.mapView.toggle();
-		}
+		} */
 	};
 
 	loadGUI (callback) {
-		let viewer = this;
+		/* let viewer = this;
 		let sidebarContainer = $('#potree_sidebar_container');
 		sidebarContainer.load(new URL(context.scriptPath + '/sidebar.html').href, () => {
 			sidebarContainer.css('width', '300px');
@@ -850,12 +850,12 @@ class PotreeViewer extends THREE.EventDispatcher {
 					$(callback);
 				}
 			});
-		});
+		}); */
 	}
 
 	setLanguage (lang) {
-		i18n.setLng(lang);
-		$('body').i18n();
+		// i18n.setLng(lang);
+		// $('body').i18n();
 	}
 
 	setServer (server) {
@@ -1121,12 +1121,12 @@ class PotreeViewer extends THREE.EventDispatcher {
 
 		this.updateAnnotations();
 
-		if (this.mapView) {
+		/* if (this.mapView) {
 			this.mapView.update(delta, this.scene.camera);
 			if (this.mapView.sceneProjection) {
 				$('#potree_map_toggle').css('display', 'block');
 			}
-		}
+		} */
 
 		TWEEN.update(timestamp);
 
@@ -1139,7 +1139,7 @@ class PotreeViewer extends THREE.EventDispatcher {
 	loop (timestamp) {
 		requestAnimationFrame(this.loop.bind(this));
 
-		this.stats.begin();
+		// this.stats && this.stats.begin();
 
 		// var start = new Date().getTime();
 		this.update(this.clock.getDelta(), timestamp);
@@ -1186,7 +1186,7 @@ class PotreeViewer extends THREE.EventDispatcher {
 		//	w.document.write('<img src="'+screenshot+'"/>');
 		// }
 
-		this.stats.end();
+		//this.stats && this.stats.end();
 
 		context.framenumber++;
 	};

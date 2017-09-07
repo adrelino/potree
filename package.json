@@ -17,17 +17,9 @@
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.1.0",
-    "d3": "^4.10.2",
-    "i18next-client": "^1.11.4",
+    "bluebird": "^3.5.0",
     "jquery": "^3.2.1",
-    "openlayers": "^3.15.1",
-    "process-nextick-args": "^1.0.7",
-    "proj4": "^2.3.12",
-    "safe-buffer": "^5.1.1",
-    "shapefile": "^0.6.2",
-    "stats.js": "^0.17.0",
-    "three": "^0.87.1",
-    "util-deprecate": "^1.0.2"
+    "three": "^0.87.1"
   },
   "author": "Markus Schütz",
   "license": "BSD-2-CLAUSE",
@@ -40,16 +32,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "gulp": "~3.5.2",
-    "gulp-concat": "~2.1.7",
-    "gulp-connect": "^2.3.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-rename": "~1.0.0",
-    "gulp-size": "^2.1.0",
-    "gulp-uglify": "~0.2.1",
-    "gulp-util": "~2.2.20",
     "jshint": "^2.9.5",
-    "through": "~2.3.4",
     "workerify": "^1.0.0"
   }
 }

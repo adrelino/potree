@@ -8,19 +8,19 @@
     <title>Potree Viewer</title>
 
 	<link rel="stylesheet" type="text/css" href="../build/potree/potree.css">
-	<link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="../libs/jquery-ui/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="../libs/perfect-scrollbar/css/perfect-scrollbar.css">
 	<link rel="stylesheet" href="../libs/openlayers3/ol.css" type="text/css">
-	<link rel="stylesheet" href="../libs/spectrum/spectrum.css" type="text/css">
+	<link rel="stylesheet" href="../libs/spectrum/spectrum.css" type="text/css"> -->
   </head>
 
   <body>
 
-	<script src="../libs/jquery/jquery-3.1.1.min.js"></script>
+<!-- 	<script src="../libs/jquery/jquery-3.1.1.min.js"></script>
 	<script src="../libs/spectrum/spectrum.js"></script>
 	<script src="../libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
 	<script src="../libs/i18next/i18next.js"></script>
-	<script src="../libs/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../libs/jquery-ui/jquery-ui.min.js"></script> -->
 
 	<script src="../build/potree/potree.js"></script>
 	<!--<script src="../src/viewer/sidebar.js"></script>-->
@@ -28,8 +28,8 @@
 	<!-- INCLUDE ADDITIONAL DEPENDENCIES HERE -->
 	<!-- INCLUDE SETTINGS HERE -->
 
-	<script src="../libs/plasio/js/laslaz.js"></script>
-	<script src="../libs/plasio/vendor/bluebird.js"></script>
+<!-- 	<script src="../libs/plasio/js/laslaz.js"></script>
+	<script src="../libs/plasio/vendor/bluebird.js"></script> -->
 
     <div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
 		<div id="potree_render_area"></div>
@@ -45,13 +45,13 @@
 		viewer.setPointBudget(1*1000*1000);
 		viewer.loadSettingsFromURL();
 
-		viewer.setDescription("Point cloud courtesy of <a target='_blank' href='https://www.sigeom.ch/'>sigeom sa</a>");
+		/* viewer.setDescription("Point cloud courtesy of <a target='_blank' href='https://www.sigeom.ch/'>sigeom sa</a>");
 
 		viewer.loadGUI(() => {
 			viewer.setLanguage('en');
 			$("#menu_tools").next().show();
 			//viewer.toggleSidebar();
-		});
+		}); */
 
 		// Load and add point cloud to scene
 		Potree.loadPointCloud("../pointclouds/vol_total/cloud.js", "sigeom.sa", e => {
